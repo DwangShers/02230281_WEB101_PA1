@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Details</title>
+    <style>
+        body {
+            background-color: #F28B0D;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+       .pokemon-card {
+            background-color: #0D74F2;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        img {
+            max-width: 200px;
+            height: auto;
+        }
+
+       .back-arrow {
+            display: inline-block;
+            padding: 10px;
+            font-size: 20px;
+            text-decoration: none;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a class="back-arrow" onclick="goBack()">&#8592; Back</a>
+    <div class="pokemon-card">
+        <h1 id="pokemonName"></h1>
+        <img id="pokemonImage" src="" alt="Pokémon Image">
+        <p id="pokemonDescription"></p>
+        <p id="pokemonTypes"></p>
+        <p id="pokemonWeight"></p>
+        <p id="pokemonHeight"></p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const pokemonName = urlParams.get('name');
+        const pokemonImage = urlParams.get('image');
+        const pokemonWeight = urlParams.get('weight');
+        const pokemonHeight = urlParams.get('height');
+        const pokemonTypes = urlParams.get('types');
+        const pokemonDescription = urlParams.get('description');
+
+        document.getElementById('pokemonName').textContent = pokemonName;
+        document.getElementById('pokemonImage').src = pokemonImage;
+        document.getElementById('pokemonDescription').textContent = pokemonDescription;
+        document.getElementById('pokemonTypes').textContent = `Type(s): ${pokemonTypes}`;
+        document.getElementById('pokemonWeight').textContent = `Weight: ${pokemonWeight / 10} kg`;
+        document.getElementById('pokemonHeight').textContent = `Height: ${pokemonHeight / 10} m`;
+
+        function goBack() {
+            window.opener.focus();
+            window.close();
+        }
+    </script>
+</body>
+</html>
